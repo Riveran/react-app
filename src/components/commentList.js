@@ -3,6 +3,7 @@ import Comment from './comment'
 import PropTypes from 'prop-types'
 import toggleOpen from '../decorators/toggleOpen'
 import CSSTransition from 'react-addons-css-transition-group'
+import { connect } from 'react-redux'
 import './article/style.css'
 
 class CommentList extends Component {
@@ -35,9 +36,9 @@ class CommentList extends Component {
       comments && comments.length ? (
         <ul>
           {console.log(comments.length)}
-          {comments.map(comment => (
-            <li key={comments.id}>
-              <Comment comment={comment} />
+          {comments.map(id => (
+            <li key={id}>
+              <Comment id={id} />
             </li>
           ))}
         </ul>
