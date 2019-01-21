@@ -11,7 +11,6 @@ class Counter extends Component {
 
   render () {
     const { number, handleIncrement } = this.props
-    console.log(this.props)
     return (
       <div>
         <h3>{number}</h3>

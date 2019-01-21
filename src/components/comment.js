@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { createCommentSelector } from '../selectors/index'
 
+const commentSelector = createCommentSelector()
 class Comment extends Component {
   static propTypes = {
-    user: PropTypes.object.isRequired,
-    text: PropTypes.object.isRequired
+    user: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired
   }
   render () {
+    console.log(this.props)
     const { user, text } = this.props.comment
     return (
       <div>
@@ -18,6 +21,11 @@ class Comment extends Component {
   }
 }
 
-export default connect((state, ownProps) => ({
-  comment: state.comments.find(comment => comment.id === ownProps.id)
-}))(Comment)
+const createMapStateToProps = () => {
+  const commentSelector = createCommentSelector()
+  return (state, ownProps) => ({
+    comment: commentSelector(state, ownProps)
+  })
+}
+
+export default connect(createMapStateToProps)(Comment)
